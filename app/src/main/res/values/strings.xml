@@ -1,0 +1,27 @@
+<resources>
+    <string name="count_name">Data Activity</string>
+    <string name="settings_name">Settings Activity</string>
+
+    <string name="eventa">Event A</string>
+    <string name="eventb">Event B</string>
+    <string name="eventc">Event C</string>
+    <string name="count">Count</string>
+    <string name="countNum">Show my count: 0</string>
+    <string name="settings">Settings</string>
+    <string name="saveButton">Save</string>
+
+
+
+
+    <string name="setting_activities">Setting Activities</string>
+    <string name="counter1_name">Counter 1 Name</string>
+    <string name="counter2_name">Counter 2 Name</string>
+    <string name="counter3_name">Counter 3 Name</string>
+    <string name="counter_info"> Name goes here </string>
+    <string name="max_counts"> Maximum Counts </string>
+    <string name="max_counts_info"> Max count goes here </string>
+
+    <string name="numberOfCountsPhrase"> Total Count :  </string>
+
+
+</resources>

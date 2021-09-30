@@ -13,6 +13,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 
+import com.example.homeworka.MainActivity;
+import com.example.homeworka.R;
+
 
 public class Count extends AppCompatActivity {
 

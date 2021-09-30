@@ -21,7 +21,6 @@ import androidx.core.app.NavUtils;
 
 public class Settings extends AppCompatActivity {
 
-    protected TextView setting_activities;
     protected TextView counter1_name;
     protected EditText counter1_info;
     protected TextView counter2_name;
@@ -31,20 +30,11 @@ public class Settings extends AppCompatActivity {
     protected TextView max_counts;
     protected EditText max_counts_info;
     protected Button button_save;
-    protected String profileName1 = "";
-    protected String profileName2 = "";
-    protected String profileName3 = "";
-    public String key1 = "1";
-    protected String key2 = "2";
-    protected String key3 = "3";
-
-
-
-
-    //the profile names will be variables which will contain the names that we'll want to
-    //oput as the edit text names.
-    protected Integer count_max =0;
     private SharedPreferenceHelper sharedPreferenceHelper;
+    String key1 = "1";
+    String key2  = "2";
+    String key3 = "3";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -64,12 +54,6 @@ public class Settings extends AppCompatActivity {
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
                 case R.id.icon_action:{
-                    //here youre going to want to do "if the name is the same as the
-                    //string which says "your name here" then make it empty else keep it
-                    //what it is.
-                    counter1_info.setText("");
-                    counter2_info.setText("");
-                    counter3_info.setText("");
                     goToEnable();
                     return true;
             }
@@ -93,11 +77,8 @@ public class Settings extends AppCompatActivity {
             max_counts_info = findViewById(R.id.max_counts_info);
             button_save = findViewById(R.id.button_save);
             Toolbar toolbar1 = (Toolbar) findViewById(R.id.toolbar1);
-
             goToDisable();
-            counter1_info.setText(R.string.counter_info);
-            counter2_info.setText(R.string.counter_info);
-            counter3_info.setText(R.string.counter_info);
+
             setSupportActionBar(toolbar1);
             //getSupportActionBar().setDisplayShowHomeEnabled(true);
 
@@ -105,25 +86,18 @@ public class Settings extends AppCompatActivity {
 
                 @Override
                 public void onClick(View view) {
-                    goToChangeName1(profileName1);
-                    goToChangeName2(profileName2);
-                    goToChangeName3(profileName3);
+                    String profileName1 = counter1_info.getText().toString();
+                    sharedPreferenceHelper.setProfileName1(profileName1);
+
+                    //goToChangeName3(profileName3);
                     goToDisable();
-                }
-            };
-
-            View.OnClickListener events = new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
                     counter1_info.setText(sharedPreferenceHelper.getName1());
-                    counter2_info.setText(sharedPreferenceHelper.getName2());
-                    counter3_info.setText(sharedPreferenceHelper.getName3());
-                    //goToMain();
                 }
             };
+
+
             button_save.setOnClickListener(saving);
-            button_save.setOnClickListener(events);
+
         }
 
     private String getNameInfo(String key) {

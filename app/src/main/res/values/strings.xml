@@ -20,8 +20,14 @@
     <string name="counter_info"> Name goes here </string>
     <string name="max_counts"> Maximum Counts </string>
     <string name="max_counts_info"> Max count goes here </string>
-
     <string name="numberOfCountsPhrase"> Total Count :  </string>
+
+    <string name="eAtext"> Event a :  </string>
+    <string name="eBtext"> Event b :  </string>
+    <string name="eCtext"> Event c :  </string>
+    <string name="total"> Total Events :  </string>
+
+
 
 
 </resources>

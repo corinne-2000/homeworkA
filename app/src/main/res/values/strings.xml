@@ -17,15 +17,20 @@
     <string name="counter1_name">Counter 1 Name</string>
     <string name="counter2_name">Counter 2 Name</string>
     <string name="counter3_name">Counter 3 Name</string>
-    <string name="counter_info"> Name goes here </string>
     <string name="max_counts"> Maximum Counts </string>
-    <string name="max_counts_info"> Max count goes here </string>
     <string name="numberOfCountsPhrase"> Total Count :  </string>
 
     <string name="eAtext"> Event a :  </string>
     <string name="eBtext"> Event b :  </string>
     <string name="eCtext"> Event c :  </string>
     <string name="total"> Total Events :  </string>
+
+    <string name="hintEvents"> Name goes here </string>
+    <string name="hintMax"> Max count goes here:  </string>
+
+    <string name="app_name">ListDisplay</string>
+    <string name="action_settings">Settings</string>
+
 
 
 

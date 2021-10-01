@@ -14,10 +14,12 @@
         <entry key="app/src/main/res/layout/count2.xml" value="0.14311043566362716" />
         <entry key="app/src/main/res/layout/count3.xml" value="0.14311043566362716" />
         <entry key="app/src/main/res/layout/layout.xml" value="0.13855116514690982" />
+        <entry key="app/src/main/res/layout/listview.xml" value="0.1503623188405797" />
         <entry key="app/src/main/res/layout/main.xml" value="0.2745465364288172" />
         <entry key="app/src/main/res/menu/action_bar.xml" value="0.22962962962962963" />
         <entry key="app/src/main/res/menu/count2.xml" value="0.22962962962962963" />
         <entry key="app/src/main/res/menu/count3.xml" value="0.22962962962962963" />
+        <entry key="app/src/main/res/menu/main.xml" value="0.28974358974358977" />
       </map>
     </option>
   </component>

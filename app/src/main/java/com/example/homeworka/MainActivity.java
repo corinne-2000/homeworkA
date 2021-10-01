@@ -1,12 +1,16 @@
 package com.example.homeworka;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.TextView;
 import android.view.View;
+import android.widget.Toast;
+
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MainActivity extends AppCompatActivity {
@@ -17,13 +21,8 @@ public class MainActivity extends AppCompatActivity {
     protected Button button_count;
     protected Button button_settings;
     protected TextView textview_count;
-    protected int incrementA  =0;
-    protected int incrementB  =0;
-    protected int incrementC = 0;
     private SharedPreferenceHelper sharedPreferenceHelper;
-    public String key1 = "1";
-    protected String key2 = "2";
-    protected String key3 = "3";
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +41,24 @@ public class MainActivity extends AppCompatActivity {
         button_count = findViewById(R.id.button_count);
         button_settings = findViewById(R.id.button_settings);
 
-      // button_eventA.setText(sharedPreferenceHelper.getName1());
 
+
+        SharedPreferences myPrefs = getApplicationContext().getSharedPreferences("ProfilePreference", MODE_PRIVATE);
+
+
+        String eAName = myPrefs.getString("profileName1", "");
+        String eBName = myPrefs.getString("profileName2", "");
+        String eCName = myPrefs.getString("profileName3", "");
+
+        if (eAName != ""){
+            button_eventA.setText(eAName);
+        }
+        if (eBName != ""){
+            button_eventB.setText(eBName);
+        }
+        if (eCName != ""){
+            button_eventC.setText(eCName);
+        }
 
         View.OnClickListener events = new View.OnClickListener() {
             @Override
@@ -52,15 +67,22 @@ public class MainActivity extends AppCompatActivity {
                 textview_count.setText(textviewCountUpdater());
                 switch (view.getId()) {
                     case R.id.button_eventA:
-                        goToIncreseEachCount(incrementA);
+                        sharedPreferenceHelper.setIncreaseA();
+                        sharedPreferenceHelper.goToAddName(button_eventA);
                         break;
                     case R.id.button_eventB:
-                        goToIncreseEachCount(incrementB);
+                        sharedPreferenceHelper.setIncreaseB();
+                        sharedPreferenceHelper.goToAddName(button_eventB);
                         break;
                     case R.id.button_eventC:
-                        goToIncreseEachCount(incrementC);
+                        sharedPreferenceHelper.setIncreaseC();
+                        sharedPreferenceHelper.goToAddName(button_eventC);
                         break;
                 }
+
+               // String info = myPrefs.getString("profileName1", "") + "hi";
+                Toast tost= Toast.makeText(getApplicationContext(), eAName, Toast.LENGTH_LONG);
+                tost.show();
             }
         };
 
@@ -84,8 +106,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String textviewCountUpdater() {
-        String string = getString(R.string.numberOfCountsPhrase);
-        String countPhrase = string + getAllIncrements();
+        String stringofCount = getString(R.string.numberOfCountsPhrase);
+        String countPhrase = stringofCount + getAllIncrements();
         return countPhrase;
     }
 

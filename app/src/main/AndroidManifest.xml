@@ -13,7 +13,11 @@
             android:name=".Count"
             android:exported="true"
             android:label="@string/count_name"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.example.homeworka.MainActivity" />
+        </activity>
         <activity
             android:name=".Settings"
             android:exported="true"

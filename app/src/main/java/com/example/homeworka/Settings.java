@@ -1,8 +1,6 @@
 package com.example.homeworka;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
@@ -18,23 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.core.app.NavUtils;
 
-
 public class Settings extends AppCompatActivity {
 
-    protected TextView counter1_name;
-    protected EditText counter1_info;
-    protected TextView counter2_name;
-    protected EditText counter2_info;
-    protected TextView counter3_name;
-    protected EditText counter3_info;
-    protected TextView max_counts;
-    protected EditText max_counts_info;
+    protected TextView counter1_name,counter2_name, counter3_name, max_counts;
+    protected EditText counter1_info, counter2_info, counter3_info, max_counts_info;
     protected Button button_save;
-    private SharedPreferenceHelper sharedPreferenceHelper;
-    String key1 = "1";
-    String key2  = "2";
-    String key3 = "3";
-
+    public SharedPreferenceHelper sharedPreferenceHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +29,11 @@ public class Settings extends AppCompatActivity {
         setContentView(R.layout.activity_settings);
         goToUISetup();
         sharedPreferenceHelper = new SharedPreferenceHelper(Settings.this);
+
+        counter1_info.setHint(R.string.hintEvents);
+        counter2_info.setHint(R.string.hintEvents);
+        counter3_info.setHint(R.string.hintEvents);
+        max_counts_info.setHint(R.string.hintMax);
     }
 
     @Override
@@ -53,9 +45,10 @@ public class Settings extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
-                case R.id.icon_action:{
-                    goToEnable();
-                    return true;
+            case R.id.icon_action:{
+
+                goToEnable();
+                return true;
             }
             case R.id.home:{
                 goToMain();
@@ -63,57 +56,50 @@ public class Settings extends AppCompatActivity {
             }
             default:return super.onOptionsItemSelected(item);
         }
-
     }
-        private void goToUISetup () {
+    private void goToUISetup () {
 
-            counter1_name = findViewById(R.id.counter1_name);
-            counter1_info = findViewById(R.id.counter1_info);
-            counter2_name = findViewById(R.id.counter2_name);
-            counter2_info = findViewById(R.id.counter2_info);
-            counter3_name = findViewById(R.id.counter3_name);
-            counter3_info = findViewById(R.id.counter3_info);
-            max_counts = findViewById(R.id.max_counts);
-            max_counts_info = findViewById(R.id.max_counts_info);
-            button_save = findViewById(R.id.button_save);
-            Toolbar toolbar1 = (Toolbar) findViewById(R.id.toolbar1);
-            goToDisable();
-
-            setSupportActionBar(toolbar1);
-            //getSupportActionBar().setDisplayShowHomeEnabled(true);
-
-            View.OnClickListener saving = new View.OnClickListener() {
-
-                @Override
-                public void onClick(View view) {
-                    String profileName1 = counter1_info.getText().toString();
-                    sharedPreferenceHelper.setProfileName1(profileName1);
-
-                    //goToChangeName3(profileName3);
-                    goToDisable();
-                    counter1_info.setText(sharedPreferenceHelper.getName1());
-                }
-            };
+        counter1_name = findViewById(R.id.counter1_name);
+        counter1_info = findViewById(R.id.counter1_info);
+        counter2_name = findViewById(R.id.counter2_name);
+        counter2_info = findViewById(R.id.counter2_info);
+        counter3_name = findViewById(R.id.counter3_name);
+        counter3_info = findViewById(R.id.counter3_info);
+        max_counts = findViewById(R.id.max_counts);
+        max_counts_info = findViewById(R.id.max_counts_info);
+        button_save = findViewById(R.id.button_save);
+        Toolbar toolbar1 = (Toolbar) findViewById(R.id.toolbar1);
+        goToDisable();
+        setSupportActionBar(toolbar1);
 
 
-            button_save.setOnClickListener(saving);
+        View.OnClickListener saving = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
 
-        }
+                String profileName1 = counter1_info.getText().toString();
+                sharedPreferenceHelper.setProfileName1(profileName1);
+                String profileName2 = counter2_info.getText().toString();
+                sharedPreferenceHelper.setProfileName2(profileName2);
+                String profileName3 = counter3_info.getText().toString();
+                sharedPreferenceHelper.setProfileName3(profileName3);
+                String maximumCount = max_counts_info.getText().toString();
+                sharedPreferenceHelper.setMaxCounter(maximumCount);
 
-    private String getNameInfo(String key) {
-       String name = sharedPreferenceHelper.getProfileName(key);
-       return name;
-        //placeholder for returning the name
-    }
+                goToDisable();
 
-    private Integer getCountInfo() {
-        return 123;
-        //placeholder for returning the name
-    }
+                counter1_info.setText(sharedPreferenceHelper.getName1());
+                counter2_info.setText(sharedPreferenceHelper.getName2());
+                counter3_info.setText(sharedPreferenceHelper.getName3());
+                max_counts_info.setText(sharedPreferenceHelper.getMaxCount());
 
-
-    private void goToChangeMaxCount(Integer count_max) {
-        sharedPreferenceHelper.setMaxCounter(count_max);
+                //debugging shows that we DO get the name in getName1()!!!
+                String info = sharedPreferenceHelper.getName1();
+               Toast tost= Toast.makeText(getApplicationContext(), info, Toast.LENGTH_LONG);
+                tost.show();
+            }
+        };
+        button_save.setOnClickListener(saving);
     }
 
     private void goToEnable() {
@@ -130,10 +116,6 @@ public class Settings extends AppCompatActivity {
         max_counts_info.setEnabled(false);
     }
 
-    private void goToChangeNames(String key, String name) {
-        sharedPreferenceHelper.setProfileName(key, name);
-    }
-
     private void goToChangeName1(String name) {
         sharedPreferenceHelper.setProfileName1(name);
     }
@@ -146,11 +128,8 @@ public class Settings extends AppCompatActivity {
         sharedPreferenceHelper.setProfileName3( name);
     }
 
-
-
     private void goToMain() {
         Intent intent = new Intent  (this, MainActivity.class);
         startActivity(intent);
     };
-
 }
